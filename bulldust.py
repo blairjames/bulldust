@@ -3,11 +3,18 @@
 from requests import session
 from subprocess import run
 from argparse import ArgumentParser
+
 try:
     import bs4
 except:
     print("Beautiful Soup is required. \nAttempting to install.")
     run(["/usr/bin/apt -y install python3-bs4"], shell=True)
+
+try:
+    from googlesearch import search
+except:
+    print("Installing Google library")
+    run(["/usr/local/bin/pip3 install google"], shell=True)
 
 
 class Bulldust:
@@ -18,15 +25,9 @@ class Bulldust:
 
     def get_google_results(self, site: str):
         try:
-            s = session()
-            r = s.get("https://www.google.com/search?q=site%3A" + site)
-            soup = bs4.BeautifulSoup(r.text, "html.parser")
+            results = search(site, tld="com.au", lang="en", num=9999, start=0, stop=9999, pause=2)
+            [print(r) for r in results if site in r]
 
-            links = [h for h in soup.find_all("a")]
-            [print(str(l) + "\n") for l in links]
-
-            links = [l.get("href") for l in links]
-            #[print(l) for l in links]
         except Exception as e:
             print("Error! in get_google_results: " + str(e))
             exit(1)
