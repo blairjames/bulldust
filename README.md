@@ -2,4 +2,4 @@
 Subdirectory Enumerator
 
 USAGE:
-bulldust# ./bulldust.py mysite.com
+./bulldust.py mysite.com
