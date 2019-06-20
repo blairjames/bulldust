@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from requests import session
 from subprocess import run
 from argparse import ArgumentParser
 
@@ -25,9 +24,8 @@ class Bulldust:
 
     def get_google_results(self, site: str):
         try:
-            results = search(site, tld="com.au", lang="en", num=9999, start=0, stop=9999, pause=2)
-            [print(r) for r in results if site in r]
-
+            results = search("site:" + site, tld="com", lang="en", num=99999999, stop=None, pause=1)
+            [print(r) for r in results]
         except Exception as e:
             print("Error! in get_google_results: " + str(e))
             exit(1)
