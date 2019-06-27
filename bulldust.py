@@ -4,17 +4,10 @@ from subprocess import run
 from argparse import ArgumentParser
 
 try:
-    import bs4
-except:
-    print("Beautiful Soup is required. \nAttempting to install.")
-    run(["/usr/bin/apt -y install python3-bs4"], shell=True)
-
-try:
     from googlesearch import search
 except:
     print("Installing Google library")
     run(["/usr/local/bin/pip3 install google"], shell=True)
-
 
 class Bulldust:
 
